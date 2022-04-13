@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace xadrez_console.tabuleiro
+﻿namespace xadrez_console.tabuleiro
 {
-    internal class Cor
+    enum Cor
     {
+        Branco,
+        Amarelo,
+        Verde,
+        Preto
     }
 }
