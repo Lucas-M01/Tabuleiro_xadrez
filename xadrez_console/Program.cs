@@ -1,6 +1,6 @@
 ﻿using System;
 using xadrez_console.tabuleiro;
-using xadrez;
+using xadrez_console.tabuleiro.xadrez;
 
 namespace xadrez_console
 {
@@ -10,17 +10,21 @@ namespace xadrez_console
         {
             try
             {
-                Tabuleiro tab = new Tabuleiro(8, 8);
+                PartidaXadrez partida = new PartidaXadrez();
 
-                tab.colocarPeca(new Torre(tab, Cor.Preto), new Posicao(0, 0));
-                tab.colocarPeca(new Torre(tab, Cor.Preto), new Posicao(1, 3));
-                tab.colocarPeca(new Rei(tab, Cor.Preto), new Posicao(2, 4));
+                while (!partida.terminada)
+                {
+                    Console.Clear();
+                    Tela.imprimirTabuleiro(partida.tab);
+                    Console.WriteLine();
+                    Console.Write("Origem : ");
+                    Posicao origem = Tela.lerposicaoXadrez().toPosicao();
+                    Console.Write("Destino: ");
+                    Posicao destino = Tela.lerposicaoXadrez().toPosicao();
 
-                tab.colocarPeca(new Rei(tab, Cor.Branco), new Posicao(3, 5));
+                    partida.executarMovimento(origem, destino);
+                }
 
-                Tela.imprimirTabuleiro(tab);
-
-                Console.WriteLine();
             }
             catch(Exception e)
             {
