@@ -10,6 +10,11 @@
             this.linha = linha;
             this.coluna = coluna;
         }
+        public void definitValores(int linha, int coluna)
+        {
+            this.linha = linha;
+            this.coluna= coluna;
+        }
         public override string ToString()
         {
             return linha 
