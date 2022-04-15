@@ -1,37 +1,52 @@
-﻿namespace xadrez_console.tabuleiro
+﻿using xadrez_console.tabuleiro;
+
+namespace tabuleiro
 {
-     abstract class Peca
+    abstract class Peca
     {
+
         public Posicao posicao { get; set; }
         public Cor cor { get; protected set; }
-        public Tabuleiro tab { get; set; }
-        public int qte_movimentos { get; set; }
+        public int qteMovimentos { get; protected set; }
+        public Tabuleiro tab { get; protected set; }
 
-        public Peca(Cor cor, Tabuleiro tab)
+        public Peca(Tabuleiro tab, Cor cor)
         {
             this.posicao = null;
-            this.cor = cor;
             this.tab = tab;
-            this.qte_movimentos = 0;
+            this.cor = cor;
+            this.qteMovimentos = 0;
         }
-        public void incrementarMovimento()
+
+        public void incrementarQteMovimentos()
         {
-            qte_movimentos++;
+            qteMovimentos++;
         }
+
+        public void decrementarQteMovimentos()
+        {
+            qteMovimentos--;
+        }
+
         public bool existeMovimentosPossiveis()
         {
             bool[,] mat = movimentosPossiveis();
-            for(int i = 0; i < tab.linhas; i++)
+            for (int i = 0; i < tab.linhas; i++)
             {
-                for(int j = 0; j < tab.colunas; j++)
+                for (int j = 0; j < tab.colunas; j++)
                 {
-                    if(mat[i, j])
+                    if (mat[i, j])
                     {
                         return true;
                     }
                 }
             }
             return false;
+        }
+
+        public bool movimentoPossivel(Posicao pos)
+        {
+            return movimentosPossiveis()[pos.linha, pos.coluna];
         }
 
         public abstract bool[,] movimentosPossiveis();
